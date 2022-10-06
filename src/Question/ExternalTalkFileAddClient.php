@@ -2,7 +2,6 @@
 
 namespace JSPSystem\YahooShoppingApiClient\Question;
 
-use CURLFile;
 use JSPSystem\YahooShoppingApiClient\BaseApiClient;
 use JSPSystem\YahooShoppingApiClient\Exception\ApiException;
 
@@ -31,8 +30,8 @@ class ExternalTalkFileAddClient extends BaseApiClient
      * ファイルを投稿します。
      *
      * @param string $id セラーID
-     * @param array $parameters トピックIDとファイル情報。
-     * 例) [topicId => '', file => UploadedFile]
+     * @param array $parameters セラーID、トピックIDとファイル情報。
+     * 例) ['sellerId' => '', 'topicId' => '', 'file' => CURLFile]
      * @return array
      */
     public function request(array $parameters): array
@@ -54,11 +53,7 @@ class ExternalTalkFileAddClient extends BaseApiClient
         // マルチパートでリクエスト
         $url = $this->getUrl($seller_id, self::URL, self::TEST_URL) . '?'
              . "topicId={$topic_id}&sellerId={$seller_id}";
-        return $this->asMultipart()->post($url, ['file' => new CURLFile(
-            $file->getRealPath(),
-            $file->getMimeType(),
-            $file->getClientOriginalName()
-        )]);
+        return $this->asMultipart()->post($url, ['file' => $file]);
     }
 
 }
