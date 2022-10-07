@@ -30,7 +30,10 @@ class ExternalTalkAddClient extends BaseApiClient
      * 問い合わせメッセージを投稿します。
      *
      * @param array $parameters トピックIDを含めたリクエストパラメータ。
-     * 例) [topicId => '', 'body' => '', 'sellerId' => '', 'fileList' => []]
+     * 例)
+     * ['topicId' => '', 'body' => '', 'sellerId' => '', 'fileList' => [
+     *     ['fileName' => '', 'filePath' => '', 'fileExt' => '']
+     * ]]
      * @return array
      */
     public function request(array $parameters): array
