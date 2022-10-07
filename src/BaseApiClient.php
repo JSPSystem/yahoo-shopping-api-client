@@ -200,6 +200,10 @@ abstract class BaseApiClient
             $error = $json_response['Message'];
             throw new ApiException($error, $code . $error);
         }
+        if (isset($json_response['error'])) {
+            $error = $json_response['error']['reason'] ?? 'api error';
+            throw new ApiException($error);
+        }
 
         return $json_response;
     }
