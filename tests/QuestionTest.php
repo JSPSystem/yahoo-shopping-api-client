@@ -31,10 +31,10 @@ class QuestionTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 一覧が存在するか
         $headlines = $result['headlines'] ?? null;
-        $this->assertFalse(empty($headlines));
+        $this->assertNotEmpty($headlines);
         // 指定の問い合わせが存在するか
         $topic = null;
         foreach ($headlines as $headline) {
@@ -43,7 +43,7 @@ class QuestionTest extends AbstractTestCase
             }
             $topic = $headline;
         }
-        $this->assertFalse(empty($topic));
+        $this->assertNotEmpty($topic);
     }
 
     /**
@@ -60,14 +60,14 @@ class QuestionTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 問い合わせ情報が存在するか
         $topic = $result['topic'] ?? null;
-        $this->assertFalse(empty($topic));
+        $this->assertNotEmpty($topic);
         // タイトルが存在するか
-        $this->assertFalse(empty($topic['title']));
+        $this->assertNotEmpty($topic['title']);
         // メッセージが存在するか
-        $this->assertFalse(empty($result['messages']));
+        $this->assertNotEmpty($result['messages']);
     }
 
     /**
@@ -95,10 +95,10 @@ class QuestionTest extends AbstractTestCase
 
                 // Content-Typeが存在するか
                 $content_type = $file['content-type'] ?? null;
-                $this->assertFalse(empty($content_type));
+                $this->assertNotEmpty($content_type);
                 // ファイルデータが存在するか
                 $body = $file['body'] ?? null;
-                $this->assertFalse(empty($body));
+                $this->assertNotEmpty($body);
             }
         }
     }
@@ -172,7 +172,7 @@ class QuestionTest extends AbstractTestCase
         $this->assertSame($_ENV['TEST_TOPIC_ID'], $result['topicid']);
         // メッセージIDは存在するか
         $message_id = $result['messageid'] ?? null;
-        $this->assertFalse(empty($message_id));
+        $this->assertNotEmpty($message_id);
 
         // 問い合わせ取得
         $detail_client = new ExternalTalkDetailClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -191,7 +191,7 @@ class QuestionTest extends AbstractTestCase
         }
 
         // メッセージは存在するか
-        $this->assertFalse(empty($message));
+        $this->assertNotEmpty($message);
         // メッセージ内容は一致するか
         $this->assertSame($body, $message['body']);
 

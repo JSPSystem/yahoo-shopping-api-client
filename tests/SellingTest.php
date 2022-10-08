@@ -98,7 +98,7 @@ class SellingTest extends AbstractTestCase
         ]);
 
         // 予約日は空か
-        $this->assertTrue(empty($result['ReserveTime']));
+        $this->assertEmpty($result['ReserveTime']);
     }
 
     /**

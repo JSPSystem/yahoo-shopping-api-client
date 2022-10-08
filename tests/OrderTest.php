@@ -33,7 +33,7 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 成功したか
-        $this->assertFalse(empty($count));
+        $this->assertNotEmpty($count);
         // 件数は正しいか
         $this->assertSame(1, (int)$count['NewOrder']);      // 新規注文
         $this->assertSame(1, (int)$count['NewReserve']);    // 新規予約
@@ -65,7 +65,7 @@ class OrderTest extends AbstractTestCase
         $this->assertSame(1, (int)$response['Search']['TotalCount']);
         // 注文情報は存在するか
         $order = $response['Search']['OrderInfo'] ?? null;
-        $this->assertFalse(empty($order));
+        $this->assertNotEmpty($order);
         // 新規予約か（IsSeen=false and OrderStatus=1:予約中）
         $this->assertSame('false', $order['IsSeen']);
         $this->assertSame(1, (int)$order['OrderStatus']);
@@ -89,7 +89,7 @@ class OrderTest extends AbstractTestCase
         $this->assertSame(1, (int)$response['Search']['TotalCount']);
         // 注文情報は存在するか
         $order = $response['Search']['OrderInfo'] ?? null;
-        $this->assertFalse(empty($order));
+        $this->assertNotEmpty($order);
         // 注文IDは一致するか
         $this->assertSame($_ENV['TEST_NEW_ORDER_ID'], $order['OrderId']);
     }
@@ -112,13 +112,13 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 注文情報は存在するか
-        $this->assertFalse(empty($order));
+        $this->assertNotEmpty($order);
         // 新規予約になっているか（IsSeen=false and OrderStatus=1:予約中）
         $this->assertSame('false', $order['IsSeen']);
         $this->assertSame(1, (int)$order['OrderStatus']);
         // 商品が存在するか
         $item = $order['Item'] ?? null;
-        $this->assertFalse(empty($item));
+        $this->assertNotEmpty($item);
         // 明細の商品コードが一致するか
         $this->assertSame($_ENV['TEST_NEW_RESERVE_ITEM_CODE'], $item['ItemId']);
 
@@ -131,13 +131,13 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 注文情報は存在するか
-        $this->assertFalse(empty($order));
+        $this->assertNotEmpty($order);
         // 新規注文になっているか（IsSeen=false and OrderStatus=2:処理中）
         $this->assertSame('false', $order['IsSeen']);
         $this->assertSame(2, (int)$order['OrderStatus']);
         // 商品が存在するか
         $item = $order['Item'] ?? null;
-        $this->assertFalse(empty($item));
+        $this->assertNotEmpty($item);
         // 明細の商品コードが一致するか
         $this->assertSame($_ENV['TEST_NEW_ORDER_ITEM_CODE'], $item['ItemId']);
     }
@@ -167,7 +167,7 @@ class OrderTest extends AbstractTestCase
         // 更新に成功したか
         $this->assertTrue($change_client->isSuccess($result));
         // 更新時に警告がないか
-        $this->assertTrue(empty($change_client->getWarnings($result)));
+        $this->assertEmpty($change_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -211,7 +211,7 @@ class OrderTest extends AbstractTestCase
         // 更新に成功したか
         $this->assertTrue($change_client->isSuccess($result));
         // 更新時に警告がないか
-        $this->assertTrue(empty($change_client->getWarnings($result)));
+        $this->assertEmpty($change_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -275,7 +275,7 @@ class OrderTest extends AbstractTestCase
         // 更新に成功したか
         $this->assertTrue($add_client->isSuccess($result));
         // 更新時に警告がないか
-        $this->assertTrue(empty($add_client->getWarnings($result)));
+        $this->assertEmpty($add_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -286,7 +286,7 @@ class OrderTest extends AbstractTestCase
 
         // 商品が存在するか
         $items = $order['Item'] ?? null;
-        $this->assertFalse(empty($items));
+        $this->assertNotEmpty($items);
         // 明細が複数あるか
         $this->assertTrue(isset($items[1]));
         // 追加した商品が存在するか
@@ -297,7 +297,7 @@ class OrderTest extends AbstractTestCase
             }
             $add_item = $item;
         }
-        $this->assertFalse(empty($add_item));
+        $this->assertNotEmpty($add_item);
         // サブコード・数量が一致するか
         $this->assertSame($_ENV['TEST_NEW_LINE_SUB_CODE'], $item['SubCode']);
         $this->assertSame($quantity, (int)$item['Quantity']);
@@ -369,7 +369,7 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 更新時に警告は出てないか
-        $this->assertTrue(empty($change_client->getWarnings($result)));
+        $this->assertEmpty($change_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -410,7 +410,7 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 更新時に警告は出てないか
-        $this->assertTrue(empty($change_client->getWarnings($result)));
+        $this->assertEmpty($change_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);
@@ -447,7 +447,7 @@ class OrderTest extends AbstractTestCase
         ]);
 
         // 更新時に警告は出てないか
-        $this->assertTrue(empty($change_client->getWarnings($result)));
+        $this->assertEmpty($change_client->getWarnings($result));
 
         // 更新後の注文を取得
         $info_client = new OrderInfoClient($_ENV['TEST_ACCESS_TOKEN']);

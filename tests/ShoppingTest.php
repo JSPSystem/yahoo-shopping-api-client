@@ -27,7 +27,7 @@ class ShoppingTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 検索結果の返却数は一致するか
         $this->assertSame($results, $result['totalResultsReturned']);
         // 実際の結果の数と設定した返却数が一致するか
@@ -61,7 +61,7 @@ class ShoppingTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($items));
+        $this->assertNotEmpty($items);
         // 総検索ヒット数と一致するか
         $this->assertSame($total, count($items));
     }

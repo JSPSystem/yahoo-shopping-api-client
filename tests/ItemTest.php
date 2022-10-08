@@ -71,7 +71,7 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 内容は正しいか
         $this->assertSame($_ENV['TEST_STORE_CATE'], $result['PathList']['Path']);
         $this->assertSame(self::ITEM_NAME, $result['Name']);
@@ -95,12 +95,12 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // レスポンスが存在するか
-        $this->assertFalse(empty($response));
+        $this->assertNotEmpty($response);
         // 取得件数は1件以上か
         $this->assertGreaterThanOrEqual(1, $response['@attributes']['totalResultsReturned']);
         // 結果が存在するか
         $items = $response['Result'] ?? null;
-        $this->assertFalse(empty($items));
+        $this->assertNotEmpty($items);
 
         // 返された個数が1件の場合は複数件の時と同じ条件にする
         $items = 1 == $response['@attributes']['totalResultsReturned'] ? [$items] : $items;
@@ -113,7 +113,7 @@ class ItemTest extends AbstractTestCase
             }
             $item_info = $item;
         }
-        $this->assertFalse(empty($item_info));
+        $this->assertNotEmpty($item_info);
         // 内容は正しいか
         $this->assertSame(self::ITEM_NAME, $item_info['Name']);
         $this->assertSame(self::ITEM_PRICE, $item_info['Price']);
@@ -134,7 +134,7 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($response));
+        $this->assertNotEmpty($response);
         // 成功したか
         $this->assertSame('OK', $response['Status']);
     }
@@ -158,7 +158,7 @@ class ItemTest extends AbstractTestCase
 
         // 結果が存在するか
         $result = $response['Result'] ?? null;
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 成功したか
         $this->assertSame('OK', $result['Status']);
 
@@ -170,7 +170,7 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 元のカテゴリに存在しないか
         $this->assertNotSame($_ENV['TEST_STORE_CATE'], $result['PathList']['Path']);
         // 移動先のカテゴリになっているか
@@ -197,7 +197,7 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // レスポンスが存在するか
-        $this->assertFalse(empty($response));
+        $this->assertNotEmpty($response);
         // 成功したか
         $this->assertSame('OK', $response['Status']);
          
@@ -209,7 +209,7 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // 結果が存在するか
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 元の商品名と違うか
         $this->assertNotSame(self::ITEM_NAME, $result['Name']);
         // 新しい商品名になっているか
@@ -231,10 +231,10 @@ class ItemTest extends AbstractTestCase
         ]);
 
         // レスポンスが存在するか
-        $this->assertFalse(empty($response));
+        $this->assertNotEmpty($response);
         // 結果が存在するか
         $result = $response['Result'] ?? null;
-        $this->assertFalse(empty($result));
+        $this->assertNotEmpty($result);
         // 成功したか
         $this->assertSame('OK', $result['Status']);
     }
