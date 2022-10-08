@@ -1,0 +1,33 @@
+{
+    "name": "jspsystem/yahoo-shopping-api-client",
+    "description": "A PHP package that assists in making requests to the Yahoo! Shopping API.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JSPSystem"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "ext-curl": "*",
+        "ext-openssl": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "JSPSystem\\YahooShoppingApiClient\\" : "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "JSPSystem\\YahooShoppingApiClient\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "vlucas/phpdotenv": "^5.4",
+        "fakerphp/faker": "^1.20"
+    }
+}
