@@ -1,4 +1,8 @@
 # Yahoo! Shopping API Support Library for PHP
+![GitHub](https://img.shields.io/github/license/JSPSystem/yahoo-shopping-api-client)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/JSPSystem/yahoo-shopping-api-client)
+![GitHub top language](https://img.shields.io/github/languages/top/JSPSystem/yahoo-shopping-api-client)
+
 A library that supports requests to the Yahoo! Shopping API.
 
 ## Table of Contents
